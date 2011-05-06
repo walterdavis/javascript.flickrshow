@@ -73,6 +73,4 @@ AddHandler php5-script .php
 	                                                    
 	RewriteRule ^v6/(.*)$						        http://www.flickrshow.com/static/scripts/flickrshow-7.2.min.js	[R=301,L]
 	RewriteRule ^v7/(.*)$						        http://www.flickrshow.com/static/scripts/flickrshow-7.2.min.js	[R=301,L]
-	
-	RewriteRule ^static/scripts/flickrshow-7.1.min.js	http://www.flickrshow.com/static/scripts/flickrshow-7.2.min.js	[R=301,L]
 </IfModule>
