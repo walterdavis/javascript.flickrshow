@@ -61,16 +61,18 @@ AddHandler php5-script .php
 	RewriteEngine On
 	RewriteBase /
 	
-	RewriteCond %{HTTP_HOST}                    ^flickrshow.co.uk 		                                        [NC,OR]
-	RewriteCond %{HTTP_HOST}                    ^www.flickrshow.co.uk 	                                        [NC,OR]
-	RewriteCond %{HTTP_HOST}                    ^flickrshow.net 		                                        [NC,OR]
-	RewriteCond %{HTTP_HOST}                    ^www.flickrshow.net 	                                        [NC,OR]
-	RewriteCond %{HTTP_HOST}                    ^v6.flickrshow.com 	                                            [NC,OR]
-	RewriteCond %{HTTP_HOST}                    ^v7.flickrshow.com 	                                            [NC,OR]
-	RewriteCond %{HTTP_HOST}                    ^api.flickrshow.com 	                                        [NC,OR]
-	RewriteCond %{HTTP_HOST}                    ^flickrshow.com 		                                        [NC]
-	RewriteRule ^(.*)$                          http://www.flickrshow.com/$1                                    [R=301,L]
+	RewriteCond %{HTTP_HOST}                            ^flickrshow.co.uk 		                                        [NC,OR]
+	RewriteCond %{HTTP_HOST}                            ^www.flickrshow.co.uk 	                                        [NC,OR]
+	RewriteCond %{HTTP_HOST}                            ^flickrshow.net 		                                        [NC,OR]
+	RewriteCond %{HTTP_HOST}                            ^www.flickrshow.net 	                                        [NC,OR]
+	RewriteCond %{HTTP_HOST}                            ^v6.flickrshow.com 	                                            [NC,OR]
+	RewriteCond %{HTTP_HOST}                            ^v7.flickrshow.com 	                                            [NC,OR]
+	RewriteCond %{HTTP_HOST}                            ^api.flickrshow.com 	                                        [NC,OR]
+	RewriteCond %{HTTP_HOST}                            ^flickrshow.com 		                                        [NC]
+	RewriteRule ^(.*)$                                  http://www.flickrshow.com/$1                                    [R=301,L]
+	                                                    
+	RewriteRule ^v6/(.*)$						        http://www.flickrshow.com/static/scripts/flickrshow-7.2.min.js	[R=301,L]
+	RewriteRule ^v7/(.*)$						        http://www.flickrshow.com/static/scripts/flickrshow-7.2.min.js	[R=301,L]
 	
-	RewriteRule ^v6/(.*)$						http://www.flickrshow.com/static/scripts/flickrshow-7.1.min.js	[R=301,L]
-	RewriteRule ^v7/(.*)$						http://www.flickrshow.com/static/scripts/flickrshow-7.1.min.js	[R=301,L]
+	RewriteRule ^static/scripts/flickrshow-7.1.min.js	http://www.flickrshow.com/static/scripts/flickrshow-7.2.min.js	[R=301,L]
 </IfModule>
