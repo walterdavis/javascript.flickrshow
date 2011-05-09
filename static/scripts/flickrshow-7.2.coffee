@@ -51,7 +51,8 @@ flickrshow = (target, settings) ->
             page: _.settings.page
             per_page: _.settings.per_page
         
-        # If the license has been changed from the default ...
+        # If the licence/license has been changed from the default ...
+        if _.settings.licence? then parameters.license = _.settings.licence
         if _.settings.license? then parameters.license = _.settings.license
         
         # If we are fetching a gallery's images
@@ -91,7 +92,7 @@ flickrshow = (target, settings) ->
         for own key, value of parameters 
             url += key + '=' + value + '&'
         
-        url
+        return url
 
     # @access	private
     # @param    object
@@ -120,6 +121,8 @@ flickrshow = (target, settings) ->
             
         # Define our interval function
         _.constants.intervals[identifier] = window.setInterval(execute, speed/1.5)
+        
+        return
 
     # @access	private
     # @return	void
@@ -138,7 +141,9 @@ flickrshow = (target, settings) ->
         
         # If there is a user supplied callback for moving, run it now ...
         if typeof _.settings.onMove == 'function' then _.settings.onMove(_.elements.images.childNodes[_.constants.imageCurrent].childNodes[0])
-
+        
+        return
+        
     # @access	private
     # @return	void
 
@@ -163,7 +168,9 @@ flickrshow = (target, settings) ->
             
             # If there is a user supplied callback for pausing, run it now ...
             if typeof _.settings.onPause is 'function' then _.settings.onPause(_.elements.images.childNodes[_.constants.imageCurrent].childNodes[0])
-
+        
+        return
+        
     # @access	private
     # @return	void
 
@@ -181,7 +188,9 @@ flickrshow = (target, settings) ->
         
         # If there is a user supplied callback for moving, run it now ...window.clearInterval
         if typeof _.settings.onMove is 'function' then _.settings.onMove(_.elements.images.childNodes[_.constants.imageCurrent].childNodes[0])
-
+        
+        return
+        
     # @access	private
     # @param  object
     # @return boolean
@@ -231,7 +240,9 @@ flickrshow = (target, settings) ->
             
             # If there is a user supplied callback for loading, run it now ...
             if typeof _.settings.onLoad is 'function' then _.settings.onLoad()
-
+        
+        return
+        
     #  @access	private
     #  @param  object
     #  @return boolean
@@ -305,7 +316,9 @@ flickrshow = (target, settings) ->
             
             # Create our onLoad event for the image ...
             _.addEvent(img, 'load', _.onLoadImage)
-
+        
+        return
+        
     # @access	private
     # @param  object
     # @return	void
@@ -345,7 +358,9 @@ flickrshow = (target, settings) ->
         _.elements.script.src = _.addUrl('flickrshow_jsonp_' + _.constants.random)
         
         (document.getElementsByTagName('head')[0] or document.getElementsByTagName('body')[0]).appendChild(_.elements.script)
-
+        
+        return
+        
     # @access	private
     # @return	void
 
@@ -354,7 +369,9 @@ flickrshow = (target, settings) ->
         
         _.constants.isButtonsOpen = false
         _.animate(_.elements.buttons, 'top', _.elements.target.offsetHeight, _.constants.speed, 'buttons')
-
+        
+        return
+        
     # @access	private
     # @return	void
 
@@ -363,13 +380,17 @@ flickrshow = (target, settings) ->
         
         _.constants.isButtonsOpen = true
         _.animate(_.elements.buttons, 'top', _.elements.target.offsetHeight - 40, _.constants.speed, 'buttons')
-
+        
+        return
+        
     # @access	private
     # @return	void
 
     _.toggleButtons = () ->
         if _.constants.isButtonsOpen is true then _.hideButtons() else _.showButtons()
-
+        
+        return
+        
     # @access	private
     # @return	void
 
@@ -381,7 +402,9 @@ flickrshow = (target, settings) ->
         
         # Redirect to the image's Flickr page ...
         window.location = 'http://www.flickr.com/photos/' + img.getAttribute('data-flickr-owner') + '/' + img.getAttribute('data-flickr-photo_id') + '/'
-
+        
+        return
+        
     # @access	private
     # @return	void
 
@@ -393,7 +416,9 @@ flickrshow = (target, settings) ->
         
         # Update the details
         _.elements.buttons.childNodes[3].innerHTML = (_.constants.imageCurrent + 1) + '/' + _.constants.imageTotal + ' - ' + img.getAttribute('data-flickr-title')
-
+        
+        return
+        
     # The objects containing our constants and settings, and the objects which
     # will later directly reference DOM elements
 
@@ -447,9 +472,9 @@ flickrshow = (target, settings) ->
     # Loop through our predefined allowed settings, above, and check through the
     # user supplied list, overriding in any that have been provided by the user
 
-    for own key of _.settings
-        if settings[key]? then _.settings[key] = settings[key]
-
+    for own key,value of settings 
+        _.settings[key] = value
+    
     # For backwards compatibility with Flickrshow 6.X, we should also test
     # for the presence of the variables under their deprecated names and assign them
     # in the same way.
