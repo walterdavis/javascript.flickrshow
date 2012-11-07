@@ -320,7 +320,7 @@ flickrshow = function(target, settings) {
 		group: null,
 		hide_buttons: false,
 		interval: 3000,
-		license: '1,2,3,4,5,6,7',
+		license: '',
 		onLoad: null,
 		onMove: null,
 		onPlay: null,
