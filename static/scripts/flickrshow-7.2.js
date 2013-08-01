@@ -365,3 +365,10 @@ if (window.jQuery != null) {
 		return new flickrshow(window.jQuery(this)[0], settings);
 	};
 }
+if (Prototype) {
+  Element.addMethods({
+    flickrshow: function(element){
+      return new flickrshow($(element), settings);
+    }
+  });
+}
