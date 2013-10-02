@@ -2,7 +2,7 @@
  *  @package    Flickrshow
  *  @subpackage Javascript
  *  @author     Ben Sekulowicz-Barclay
- *  @version    7.2
+ *  @version    7.2.1
  *  
  *  Flickrshow is a Beseku thing licensed under a Creative Commons Attribution 3.0 
  *  Unported License. For more information visit http://www.flickrshow.com.
